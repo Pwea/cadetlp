@@ -48,20 +48,40 @@
     node.className = `status ${type}`;
   }
 
+  function setHiddenById(nodeId, hidden) {
+    const node = document.getElementById(nodeId);
+    if (node) {
+      node.hidden = hidden;
+    }
+  }
+
   function updateAuthUi() {
     const userNode = document.getElementById("authState");
     const logoutBtn = document.getElementById("logoutBtn");
-    if (!userNode || !logoutBtn) {
+    const loggedIn = isLoggedIn();
+
+    setHiddenById("loginSignupLink", loggedIn);
+    setHiddenById("footerLoginSignupLink", loggedIn);
+    setHiddenById("myLessonsLink", !loggedIn);
+    setHiddenById("footerMyLessonsLink", !loggedIn);
+
+    if (logoutBtn) {
+      logoutBtn.hidden = !loggedIn;
+    }
+
+    if (!userNode) {
       return;
     }
 
-    if (isLoggedIn()) {
+    if (loggedIn) {
       const user = currentUser();
       userNode.textContent = `Signed in as ${user?.name || user?.email || "user"}`;
-      logoutBtn.hidden = false;
+      userNode.classList.add("auth-state", "auth-state--signed-in");
+      userNode.classList.remove("auth-state--signed-out");
     } else {
       userNode.textContent = "Not signed in";
-      logoutBtn.hidden = true;
+      userNode.classList.add("auth-state", "auth-state--signed-out");
+      userNode.classList.remove("auth-state--signed-in");
     }
   }
 

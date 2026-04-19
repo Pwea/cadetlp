@@ -66,7 +66,8 @@ async function handleCreate(event) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await window.layoutReady;
   if (!guardAuth()) {
     return;
   }

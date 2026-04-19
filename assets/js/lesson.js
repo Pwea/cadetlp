@@ -1,4 +1,4 @@
-const { pb: pbClient, escapeHtml, getCreatorLabel, setStatus, updateAuthUi, bindLogout } = window.pbUtils;
+const { pb: pbClient, escapeHtml, getCreatorLabel, setStatus, updateAuthUi, bindLogout, isLoggedIn, currentUser } = window.pbUtils;
 
 function getParamId() {
   const params = new URLSearchParams(window.location.search);
@@ -107,6 +107,37 @@ async function loadLesson() {
       fileLinksNode.appendChild(createLink(slideUrl, "Download slideshow"));
     }
 
+    const ownerActions = document.getElementById("ownerActions");
+    if (ownerActions) {
+      ownerActions.innerHTML = "";
+      const signedInUser = currentUser();
+      const canDelete = isLoggedIn() && signedInUser?.id && String(record.creator) === String(signedInUser.id);
+      if (canDelete) {
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "danger";
+        deleteBtn.type = "button";
+        deleteBtn.textContent = "Delete lesson plan";
+        deleteBtn.addEventListener("click", async () => {
+          const confirmed = window.confirm("Delete this lesson plan permanently?");
+          if (!confirmed) {
+            return;
+          }
+
+          deleteBtn.disabled = true;
+          setStatus("lessonStatus", "Deleting lesson plan...", "success");
+          try {
+            await pbClient.collection("lessonPlans").delete(record.id);
+            setStatus("lessonStatus", "Lesson deleted. Redirecting...", "success");
+            window.location.href = "index.html";
+          } catch (error) {
+            deleteBtn.disabled = false;
+            setStatus("lessonStatus", `Could not delete lesson: ${error.message}`, "error");
+          }
+        });
+        ownerActions.appendChild(deleteBtn);
+      }
+    }
+
     await renderPreview(record, lessonPlanFile);
     setStatus("lessonStatus", "", "");
   } catch (error) {
@@ -114,7 +145,8 @@ async function loadLesson() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await window.layoutReady;
   updateAuthUi();
   bindLogout();
   loadLesson();

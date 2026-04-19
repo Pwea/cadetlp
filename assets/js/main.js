@@ -1,5 +1,7 @@
 const { pb: pbClient, escapeHtml, getCreatorLabel, setStatus, updateAuthUi, bindLogout } = window.pbUtils;
 
+let searchTimer = null;
+
 function lessonCardTemplate(record) {
   const creator = escapeHtml(getCreatorLabel(record));
   const code = escapeHtml(record.code || "No code");
@@ -17,7 +19,7 @@ function lessonCardTemplate(record) {
   `;
 }
 
-async function loadLessonPlans() {
+async function loadLessonPlans(searchTerm = "") {
   const listNode = document.getElementById("lessonList");
   if (!listNode) {
     return;
@@ -26,15 +28,25 @@ async function loadLessonPlans() {
   setStatus("listStatus", "Loading lesson plans...", "success");
   listNode.innerHTML = "";
 
+  const safeSearch = String(searchTerm || "").trim();
+  const escapedSearch = safeSearch.replaceAll("\\", "\\\\").replaceAll("'", "\\'");
+  const filter = escapedSearch ? `name ~ '${escapedSearch}' || code ~ '${escapedSearch}'` : "";
+
   try {
     const result = await pbClient.collection("lessonPlans").getList(1, 100, {
       sort: "-created",
       expand: "creator",
+      filter,
     });
 
     if (!result.items.length) {
-      setStatus("listStatus", "No lesson plans found yet.", "success");
-      listNode.innerHTML = '<p class="muted">Create the first lesson plan from the create page.</p>';
+      if (safeSearch) {
+        setStatus("listStatus", "No lesson plans matched your search.", "success");
+        listNode.innerHTML = '<p class="muted">Try a different lesson name or code.</p>';
+      } else {
+        setStatus("listStatus", "No lesson plans found yet.", "success");
+        listNode.innerHTML = '<p class="muted">Create the first lesson plan from the create page.</p>';
+      }
       return;
     }
 
@@ -45,8 +57,18 @@ async function loadLessonPlans() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await window.layoutReady;
   updateAuthUi();
   bindLogout();
+  const searchInput = document.getElementById("lessonSearch");
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        loadLessonPlans(searchInput.value);
+      }, 250);
+    });
+  }
   loadLessonPlans();
 });

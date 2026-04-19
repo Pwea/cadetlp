@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cadet Lesson Plans - View Lesson</title>
+    <title>Cadet Lesson Plans - My Lessons</title>
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -11,19 +11,14 @@
 
     <main>
       <section class="panel">
-        <h1 id="lessonName">Lesson Details</h1>
+        <h1>My Lesson Plans</h1>
         <p class="muted" id="authState">Checking sign-in state...</p>
-        <p id="lessonStatus"></p>
-
-        <div class="card">
-          <p><strong>Code:</strong> <span id="lessonCode">-</span></p>
-          <p><strong>Creator:</strong> <span id="lessonCreator">-</span></p>
-          <div id="fileLinks" class="file-links" aria-label="Lesson file links"></div>
-          <div id="ownerActions" class="actions"></div>
+        <div class="search-row">
+          <label class="search-label" for="lessonSearch">Search my lessons by name or code</label>
+          <input id="lessonSearch" type="search" placeholder="Type a name or code..." autocomplete="off" />
         </div>
-
-        <h2>Preview</h2>
-        <div id="previewArea" aria-live="polite"></div>
+        <p id="listStatus"></p>
+        <div id="lessonList" class="grid" aria-live="polite"></div>
       </section>
     </main>
 
@@ -32,6 +27,6 @@
     <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.26.8/dist/pocketbase.umd.js"></script>
     <script src="assets/js/pb.js"></script>
     <script src="assets/js/include-loader.js"></script>
-    <script src="assets/js/lesson.js"></script>
+    <script src="assets/js/mylessons.js"></script>
   </body>
 </html>

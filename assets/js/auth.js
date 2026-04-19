@@ -1,4 +1,4 @@
-const { pb: pbClient, setStatus, updateAuthUi, bindLogout } = window.pbUtils;
+const { pb: pbClient, setStatus, updateAuthUi, bindLogout, isLoggedIn } = window.pbUtils;
 
 function gotoNextPage() {
   const params = new URLSearchParams(window.location.search);
@@ -64,7 +64,13 @@ async function handleSignup(event) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  await window.layoutReady;
+  if (isLoggedIn()) {
+    window.location.href = "index.html";
+    return;
+  }
+
   updateAuthUi();
   bindLogout();
 
