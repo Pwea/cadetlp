@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadet Lesson Plans - Create Lesson</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <p class="brand">Cadet Lesson Plans</p>
+        <nav aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="create.html">Create Lesson</a>
+          <a class="nav-link" href="auth.html">Login / Signup</a>
+          <button id="logoutBtn" class="nav-link" type="button" hidden>Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h1>Create Lesson Plan</h1>
+        <p class="muted" id="authState">Checking sign-in state...</p>
+        <p id="createStatus"></p>
+
+        <form id="createLessonForm" enctype="multipart/form-data">
+          <label>
+            Lesson Code
+            <input name="code" type="text" required placeholder="M123.01" />
+          </label>
+
+          <label>
+            Lesson Name
+            <input name="name" type="text" required placeholder="Learn to swim" />
+          </label>
+
+          <label>
+            Lesson Plan File (.docx, .pdf, .txt)
+            <input name="lessonPlan" type="file" accept=".docx,.pdf,.txt" required />
+          </label>
+
+          <label>
+            Slideshow File (optional: .pptx, .ppt, .pdf)
+            <input name="slideshow" type="file" accept=".pptx,.ppt,.pdf" />
+          </label>
+
+          <button class="primary" type="submit">Create Lesson Plan</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p class="muted">Cadet Lesson Plan Portal</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="create.html">Create Lesson</a>
+          <a href="auth.html">Login / Signup</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.26.8/dist/pocketbase.umd.js"></script>
+    <script src="assets/js/pb.js"></script>
+    <script src="assets/js/create.js"></script>
+  </body>
+</html>

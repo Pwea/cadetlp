@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Cadet Lesson Plans - Home</title>
+		<link rel="stylesheet" href="assets/css/styles.css" />
+	</head>
+	<body>
+		<header>
+			<div class="header-inner">
+				<p class="brand">Cadet Lesson Plans</p>
+				<nav aria-label="Main navigation">
+					<a class="nav-link" href="index.html">Home</a>
+					<a class="nav-link" href="create.html">Create Lesson</a>
+					<a class="nav-link" href="auth.html">Login / Signup</a>
+					<button id="logoutBtn" class="nav-link" type="button" hidden>Logout</button>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<section class="panel">
+				<h1>All Lesson Plans</h1>
+				<p class="muted" id="authState">Checking sign-in state...</p>
+				<p id="listStatus"></p>
+				<div id="lessonList" class="grid" aria-live="polite"></div>
+			</section>
+		</main>
+
+		<footer>
+			<div class="footer-inner">
+				<p class="muted">Cadet Lesson Plan Portal</p>
+				<div class="footer-links">
+					<a href="index.html">Home</a>
+					<a href="create.html">Create Lesson</a>
+					<a href="auth.html">Login / Signup</a>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/pocketbase@0.26.8/dist/pocketbase.umd.js"></script>
+		<script src="assets/js/pb.js"></script>
+		<script src="assets/js/main.js"></script>
+	</body>
+</html>

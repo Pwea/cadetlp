@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadet Lesson Plans - Login and Signup</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <p class="brand">Cadet Lesson Plans</p>
+        <nav aria-label="Main navigation">
+          <a class="nav-link" href="index.html">Home</a>
+          <a class="nav-link" href="create.html">Create Lesson</a>
+          <a class="nav-link" href="auth.html">Login / Signup</a>
+          <button id="logoutBtn" class="nav-link" type="button" hidden>Logout</button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h1>Login or Signup</h1>
+        <p class="muted" id="authState">Checking sign-in state...</p>
+        <p id="authStatus"></p>
+
+        <div class="auth-wrap">
+          <article class="card">
+            <h2>Login</h2>
+            <form id="loginForm">
+              <label>
+                Email or Username
+                <input name="identity" type="text" required />
+              </label>
+              <label>
+                Password
+                <input name="password" type="password" required />
+              </label>
+              <button class="primary" type="submit">Login</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <h2>Signup</h2>
+            <form id="signupForm">
+              <label>
+                Name
+                <input name="name" type="text" placeholder="Optional display name" />
+              </label>
+              <label>
+                Email
+                <input name="email" type="email" required />
+              </label>
+              <label>
+                Password
+                <input name="password" type="password" minlength="8" required />
+              </label>
+              <label>
+                Confirm Password
+                <input name="passwordConfirm" type="password" minlength="8" required />
+              </label>
+              <button class="primary" type="submit">Create account</button>
+            </form>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p class="muted">Cadet Lesson Plan Portal</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="create.html">Create Lesson</a>
+          <a href="auth.html">Login / Signup</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/pocketbase@0.26.8/dist/pocketbase.umd.js"></script>
+    <script src="assets/js/pb.js"></script>
+    <script src="assets/js/auth.js"></script>
+  </body>
+</html>

@@ -1,0 +1,264 @@
+:root {
+  --bg: #f5f1e8;
+  --surface: #fffdf8;
+  --surface-alt: #f0e9dc;
+  --text: #1e1b16;
+  --muted: #5b5449;
+  --accent: #1f6f8b;
+  --accent-dark: #17586f;
+  --success: #2a7a38;
+  --danger: #a62c2c;
+  --border: #d8cfbf;
+  --shadow: 0 8px 18px rgba(30, 27, 22, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 20% 0%, #fdfaf3 0%, transparent 35%),
+    radial-gradient(circle at 80% 100%, #e6f3f8 0%, transparent 40%),
+    var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(120deg, #638721, #adba4d);
+  color: #f9f7f2;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.header-inner {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.nav-link,
+button.nav-link {
+  text-decoration: none;
+  border: 1px solid rgba(20, 46, 116, 0.4);
+  color: #19397a;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.45rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+button.nav-link:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+main {
+  width: min(1100px, 92%);
+  margin: 1.2rem auto;
+  flex: 1;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  box-shadow: var(--shadow);
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  padding: 1rem;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+}
+
+form {
+  display: grid;
+  gap: 0.8rem;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.65rem;
+  background: #fff;
+}
+
+button.primary {
+  border: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button.primary:hover {
+  background: var(--accent-dark);
+}
+
+button.secondary {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.status {
+  margin: 0.75rem 0;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.status.error {
+  background: #fae3e3;
+  color: var(--danger);
+  border: 1px solid #e8b4b4;
+}
+
+.status.success {
+  background: #e4f4e6;
+  color: var(--success);
+  border: 1px solid #b7dbbd;
+}
+
+.file-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.file-links a {
+  text-decoration: none;
+  color: var(--accent-dark);
+  border-bottom: 1px dashed var(--accent-dark);
+}
+
+.preview-frame {
+  width: 100%;
+  min-height: 460px;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: #fff;
+}
+
+.preview-text {
+  white-space: pre-wrap;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  padding: 1rem;
+  max-height: 460px;
+  overflow: auto;
+}
+
+footer {
+  margin-top: 1rem;
+  background: #f0e9dc;
+  border-top: 1px solid var(--border);
+  padding: 0.8rem 1rem;
+}
+
+.footer-inner {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
+
+.auth-wrap {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .preview-frame {
+    min-height: 320px;
+  }
+}
