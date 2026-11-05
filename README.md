@@ -11,3 +11,5 @@ sudo dnf install -y steam
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 flatpak install flathub com.heroicgameslauncher.hgl -y
+
+flatpak install flathub net.davidotek.pupgui2 -y
